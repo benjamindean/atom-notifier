@@ -1,6 +1,7 @@
 {BufferedProcess} = require 'atom'
 {CompositeDisposable, Disposable} = require 'atom'
 path = require 'path'
+notifier = require 'node-notifier'
 
 module.exports =
 class AtomNotifyOsdView
@@ -20,11 +21,12 @@ class AtomNotifyOsdView
         @subscriptions.add @listener
 
     send: (Notification) ->
-        command = 'notify-send'
-        icon = path.resolve(__dirname, '..', 'images', 'atom.png')
-        args = ['-i', icon, Notification.message]
-        args.push Notification.options.detail if Notification.options.detail
-        process = new BufferedProcess({command, args})
+        params = {
+          'title': Notification.message,
+          'message': Notification.options.detail ? Notification.message,
+          'icon': path.resolve(__dirname, '..', 'images', 'atom.png')
+        }
+        notifier.notify(params)
 
     destroy: ->
         @subscriptions.dispose()
