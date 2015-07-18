@@ -1,4 +1,3 @@
-{BufferedProcess} = require 'atom'
 {CompositeDisposable, Disposable} = require 'atom'
 path = require 'path'
 notifier = require 'node-notifier'
@@ -22,9 +21,10 @@ class AtomNotifyOsdView
 
     send: (Notification) ->
         params = {
-          'title': Notification.message,
-          'message': Notification.options.detail ? Notification.message,
+          'title': Notification.message
+          'message': Notification.options.detail ? atom.workspace.getActivePaneItem().getTitle()
           'icon': path.resolve(__dirname, '..', 'images', 'atom.png')
+          'contentImage': path.resolve(__dirname, '..', 'images', 'atom.png')
         }
         notifier.notify(params)
 

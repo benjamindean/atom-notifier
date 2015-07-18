@@ -1,4 +1,4 @@
-AtomNotifyOsdView = require './notify-osd-view'
+AtomNotifyOsdView = require './notify-view'
 
 module.exports =
     config:
