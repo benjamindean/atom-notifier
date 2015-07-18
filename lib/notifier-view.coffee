@@ -3,10 +3,10 @@ path = require 'path'
 notifier = require 'node-notifier'
 
 module.exports =
-class AtomNotifyOsdView
+class AtomNotiferView
     constructor: ->
         if process.platform is 'linux'
-            if atom.config.get('notify-osd.unfocused')
+            if atom.config.get('atom-notifier.unfocused')
                 window.addEventListener 'blur', =>
                     @add()
                 window.addEventListener 'focus', =>

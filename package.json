@@ -1,6 +1,6 @@
 {
   "name": "notify-osd",
-  "main": "./lib/notify",
+  "main": "./lib/notifier",
   "version": "0.1.1",
   "description": "Native desktop notifications for Atom",
   "keywords": [
@@ -9,7 +9,7 @@
     "notifications",
     "notify-send"
   ],
-  "repository": "https://github.com/benjamindean/atom-notify",
+  "repository": "https://github.com/benjamindean/atom-notifier",
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
