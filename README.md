@@ -3,11 +3,11 @@
 Native desktop notifications for Atom with [node-notifier](https://github.com/mikaelbr/node-notifier).  
 Currently tested only on Linux with `notify-send`.
 
-[Atom.io](https://atom.io/packages/notify-osd)  | [GitHub](https://github.com/benjamindean/atom-notifier)
+[Atom.io](https://atom.io/packages/atom-notifier)  | [GitHub](https://github.com/benjamindean/atom-notifier)
 
 `apm install atom-notifier`
 
-![atom-notify](https://cloud.githubusercontent.com/assets/5139993/8745652/c1d9597c-2c8a-11e5-8c10-c8ed3af6722f.png)
+![atom-notifier](https://cloud.githubusercontent.com/assets/5139993/8745652/c1d9597c-2c8a-11e5-8c10-c8ed3af6722f.png)
 
 ##Options
 
