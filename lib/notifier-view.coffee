@@ -5,14 +5,13 @@ notifier = require 'node-notifier'
 module.exports =
 class AtomNotiferView
     constructor: ->
-        if process.platform is 'linux'
-            if atom.config.get('atom-notifier.unfocused')
-                window.addEventListener 'blur', =>
-                    @add()
-                window.addEventListener 'focus', =>
-                    @destroy()
-            else
+        if atom.config.get('atom-notifier.unfocused')
+            window.addEventListener 'blur', =>
                 @add()
+            window.addEventListener 'focus', =>
+                @destroy()
+        else
+            @add()
 
     add: ->
         @subscriptions = new CompositeDisposable
