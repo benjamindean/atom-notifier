@@ -1,5 +1,11 @@
 # Change Log
 
+## [v0.2.1](https://github.com/benjamindean/atom-notifier/tree/v0.2.1) (2015-07-18)
+[Full Changelog](https://github.com/benjamindean/atom-notifier/compare/v0.2.0...v0.2.1)
+
+## [v0.2.0](https://github.com/benjamindean/atom-notifier/tree/v0.2.0) (2015-07-18)
+[Full Changelog](https://github.com/benjamindean/atom-notifier/compare/v0.1.1...v0.2.0)
+
 ## [v0.1.1](https://github.com/benjamindean/atom-notifier/tree/v0.1.1) (2015-07-17)
 [Full Changelog](https://github.com/benjamindean/atom-notifier/compare/v0.1.0...v0.1.1)
 
