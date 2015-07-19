@@ -10,12 +10,6 @@ module.exports =
             default: false
 
     activate: (state) ->
-
-        if navigator.appVersion.indexOf("NT 6.1") isnt -1
-            @icon = path.resolve(__dirname, '..', 'images', 'atom16.png')
-        else
-            @icon = path.resolve(__dirname, '..', 'images', 'atom.png')
-
         if atom.config.get('atom-notifier.unfocused')
             window.addEventListener 'blur', =>
                 @add()
@@ -32,7 +26,7 @@ module.exports =
         params = {
           'title': Notification.message
           'message': Notification.options.detail ? atom.workspace.getActivePaneItem().getTitle()
-          'icon': @icon
+          'icon': path.resolve(__dirname, '..', 'images', 'atom.png')
           'contentImage': path.resolve(__dirname, '..', 'images', 'atom.png')
         }
         notifier.notify(params)
