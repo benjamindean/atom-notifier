@@ -1,7 +1,11 @@
 # Native desktop notifications for Atom
 
 Native desktop notifications for Atom with [node-notifier](https://github.com/mikaelbr/node-notifier).  
-Currently tested only on Linux with `notify-send`.
+Currently tested on:
+
+- [x] Arch Linux
+- [x] Ubuntu 15.04
+- [x] Windows 8
 
 [Atom.io](https://atom.io/packages/atom-notifier)  | [GitHub](https://github.com/benjamindean/atom-notifier)
 
