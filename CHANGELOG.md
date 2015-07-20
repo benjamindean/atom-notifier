@@ -1,5 +1,16 @@
 # Change Log
 
+## [v0.2.8](https://github.com/benjamindean/atom-notifier/tree/v0.2.7) (2015-07-20)
+
+[Full Changelog](https://github.com/benjamindean/atom-notifier/compare/v0.2.7...HEAD)
+
+**Implemented enhancements:**
+
+- Chat icon on Windows 7 with tooltips [\#1](https://github.com/benjamindean/atom-notifier/issues/1)
+
+## [v0.2.7](https://github.com/benjamindean/atom-notifier/tree/v0.2.7) (2015-07-20)
+[Full Changelog](https://github.com/benjamindean/atom-notifier/compare/v0.2.6...v0.2.7)
+
 ## [v0.2.6](https://github.com/benjamindean/atom-notifier/tree/v0.2.6) (2015-07-20)
 [Full Changelog](https://github.com/benjamindean/atom-notifier/compare/v0.2.5...v0.2.6)
 
