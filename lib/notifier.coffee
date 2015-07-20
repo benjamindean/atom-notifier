@@ -1,6 +1,7 @@
 {CompositeDisposable, Disposable} = require 'atom'
 path = require 'path'
-notifier = require 'node-notifier'
+
+notifier = null
 
 module.exports =
     config:
@@ -23,11 +24,15 @@ module.exports =
         else
             @add()
 
+    loadNotifier: ->
+        notifier ?= require 'node-notifier'
+
     add: ->
         @subscriptions = new CompositeDisposable
         @subscriptions.add atom.notifications.onDidAddNotification (Notification) => @send Notification
 
     send: (Notification) ->
+        @loadNotifier()
         params = {
           'title': Notification.message
           'message': Notification.options.detail ? atom.workspace.getActivePaneItem().getTitle()
