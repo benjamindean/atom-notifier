@@ -5,7 +5,8 @@
   "description": "Native desktop notifications for Atom",
   "keywords": [
     "linux",
-    "notify-osd",
+    "toast",
+    "balloon",
     "notifications",
     "notify-send"
   ],
