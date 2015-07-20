@@ -42,4 +42,5 @@ module.exports =
         notifier.notify(params)
 
     destroy: ->
-        @subscriptions.dispose()
+        if @subscriptions
+            @subscriptions.dispose()
