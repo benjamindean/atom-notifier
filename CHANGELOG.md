@@ -1,8 +1,8 @@
 # Change Log
 
-## [v0.2.8](https://github.com/benjamindean/atom-notifier/tree/v0.2.7) (2015-07-20)
+## [v0.2.8](https://github.com/benjamindean/atom-notifier/tree/v0.2.8) (2015-07-20)
 
-[Full Changelog](https://github.com/benjamindean/atom-notifier/compare/v0.2.7...HEAD)
+[Full Changelog](https://github.com/benjamindean/atom-notifier/compare/v0.2.8...HEAD)
 
 **Implemented enhancements:**
 
