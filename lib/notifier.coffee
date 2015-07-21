@@ -2,6 +2,7 @@
 path = require 'path'
 
 notifier = null
+subscriptions = null
 
 module.exports =
     config:
@@ -17,12 +18,11 @@ module.exports =
             enum: ['Show All', 'Show Errors and Fatal Errors', 'Hide All']
             default: 'Show All'
 
-    activate: (state) ->
+    activate: ->
         if navigator.appVersion.indexOf("NT 6.1") isnt -1
             @icon = path.resolve(__dirname, '..', 'images', 'atom16.ico')
         else
             @icon = path.resolve(__dirname, '..', 'images', 'atom.png')
-
         @configure()
 
     configure: ->
@@ -30,21 +30,17 @@ module.exports =
         unfocused = atom.config.get('atom-notifier.unfocused')
 
         if unfocused
-            window.addEventListener 'blur', =>
-                @add()
-            window.addEventListener 'focus', =>
-                @destroy()
+            window.addEventListener 'blur', => @add()
+            window.addEventListener 'focus', => @destroy()
         else
             @add()
 
         if hideInEditor isnt 'Show All'
             hide = document.createElement('style')
-
             if hideInEditor is 'Show Errors and Fatal Errors'
                 hide.textContent = "atom-notification.info, atom-notification.warning, atom-notification.success  {display: none;}"
             else
                 hide.textContent = "atom-notification {display: none;}"
-
             atom.styles.addStyleElement(hide)
         else
             if hide? then atom.styles.removeStyleElement(hide)
@@ -53,8 +49,8 @@ module.exports =
         notifier ?= require 'node-notifier'
 
     add: ->
-        @subscriptions = new CompositeDisposable
-        @subscriptions.add atom.notifications.onDidAddNotification (Notification) => @send Notification
+        subscriptions = new CompositeDisposable
+        subscriptions.add atom.notifications.onDidAddNotification (Notification) => @send Notification
 
     send: (Notification) ->
         @loadNotifier()
@@ -67,5 +63,4 @@ module.exports =
         notifier.notify(params)
 
     destroy: ->
-        if @subscriptions
-            @subscriptions.dispose()
+        subscriptions?.dispose()
