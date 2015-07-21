@@ -11,11 +11,21 @@ Native desktop notifications for Atom with [node-notifier](https://github.com/mi
 ##Currently tested on:
 
 - [x] Arch Linux (GNOME 3.16)
-- [x] Ubuntu 15.04
+- [x] Arch Linux (KDE Plasma 5)
+- [x] Ubuntu 15.04 (Unity)
 - [x] Windows 7
 - [x] Windows 8
 
 ##Options
 
+This package doesn't watch for option changes. To apply new settings, reload editor with <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>R</kbd>.
+
 - Show only when editor is unfocused  
+Description: Show desktop notifications only when editor is unfocused or minimized.  
 Default: false
+
+- Show editor notifications?  
+Description: Which notifications to show in editor window.  
+Default: 'Show All'  
+Available: 'Show All', 'Show Errors and Fatal Errors', 'Hide All'  
+NOTE: Some notifications has buttons or large description text, so, better to leave this option as "Show All" or "Show Errors and Fatal Errors".
