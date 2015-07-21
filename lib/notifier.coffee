@@ -27,7 +27,7 @@ module.exports =
 
     configure: ->
         hideInEditor = atom.config.get('atom-notifier.hideInEditor')
-        unfocused = atom.config.get('atom-notifier.unfocused')
+        unfocused = if hideInEditor isnt 'Show All' then false else atom.config.get('atom-notifier.unfocused')
 
         if unfocused
             window.addEventListener 'blur', => @add()
@@ -36,7 +36,6 @@ module.exports =
             @add()
 
         if hideInEditor isnt 'Show All'
-            atom.config.set('atom-notifier.unfocused', false)
             hide = document.createElement('style')
             if hideInEditor is 'Show Errors and Fatal Errors'
                 hide.textContent = "atom-notification.info, atom-notification.warning, atom-notification.success  {display: none;}"
