@@ -31,7 +31,7 @@ module.exports =
 
         if unfocused
             window.addEventListener 'blur', => @add()
-            window.addEventListener 'focus', => @destroy()
+            window.addEventListener 'focus', => @deactivate()
         else
             @add()
 
@@ -62,5 +62,5 @@ module.exports =
         }
         notifier.notify(params)
 
-    destroy: ->
+    deactivate: ->
         subscriptions?.dispose()
