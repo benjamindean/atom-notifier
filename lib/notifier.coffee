@@ -1,8 +1,7 @@
 {CompositeDisposable, Disposable} = require 'atom'
 path = require 'path'
 
-notifier = null
-subscriptions = null
+[notifier, subscriptions, icon, contentImage] = [null, null, null, null]
 
 module.exports =
     config:
@@ -24,9 +23,11 @@ module.exports =
 
     activate: ->
         if navigator.appVersion.indexOf("NT 6.1") isnt -1
-            @icon = path.resolve(__dirname, '..', 'images', 'atom16.ico')
+            icon = path.resolve(__dirname, '..', 'images', 'atom16.ico')
         else
-            @icon = path.resolve(__dirname, '..', 'images', 'atom.png')
+            icon = path.resolve(__dirname, '..', 'images', 'atom.png')
+        contentImage = path.resolve(__dirname, '..', 'images', 'atom.png')
+
         @configure()
 
     configure: ->
@@ -41,16 +42,16 @@ module.exports =
             @add()
 
         if hideInEditor isnt 'Show All'
-            hide = document.createElement('style')
+            styleElement = document.createElement('style')
             if hideInEditor is 'Show Errors and Fatal Errors'
-                hide.textContent = "atom-notification.info, \
+                styleElement.textContent = "atom-notification.info, \
                                     atom-notification.warning, \
                                     atom-notification.success {display: none;}"
             else
-                hide.textContent = "atom-notification {display: none;}"
-            atom.styles.addStyleElement(hide)
+                styleElement.textContent = "atom-notification {display: none;}"
+            atom.styles.addStyleElement(styleElement)
         else
-            if hide? then atom.styles.removeStyleElement(hide)
+            if styleElement? then atom.styles.removeStyleElement(styleElement)
 
     loadNotifier: ->
         notifier ?= require 'node-notifier'
@@ -61,12 +62,13 @@ module.exports =
 
     send: (Notification) ->
         @loadNotifier()
-        params = {
-            'title': Notification.getMessage()
-            'message': Notification.getDetail() ? atom.workspace.getActivePaneItem().getTitle()
-            'icon': @icon
-            'contentImage': path.resolve(__dirname, '..', 'images', 'atom.png')
-        }
+        title = Notification.getMessage()
+        message = Notification.getDetail() ? atom.workspace.getActivePaneItem().getTitle()
+        params =
+            'title': title
+            'message': message
+            'icon': icon
+            'contentImage': contentImage
         notifier.notify(params)
 
     deactivate: ->
