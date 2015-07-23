@@ -8,12 +8,16 @@ module.exports =
     config:
         unfocused:
             title: 'Show only when editor is unfocused'
-            description: 'Show desktop notifications only when editor is unfocused or minimized. Reload editor to apply settings.'
+            description: 'Show desktop notifications only when editor is unfocused or minimized. \
+                          Reload editor to apply settings.'
             type: 'boolean'
             default: false
         hideInEditor:
             title: 'Show editor notifications?'
-            description: 'Which notifications to show in editor window. NOTE: Some notifications has buttons or large description text, so, better to leave this option as "Show All" or "Show Errors and Fatal Errors". Reload editor to apply settings.'
+            description: 'Which notifications to show in editor window. \
+                          NOTE: Some notifications has buttons or large description text, so, \
+                          better to leave this option as "Show All" or "Show Errors and Fatal Errors". \
+                          Reload editor to apply settings.'
             type: 'string'
             enum: ['Show All', 'Show Errors and Fatal Errors', 'Hide All']
             default: 'Show All'
@@ -27,7 +31,8 @@ module.exports =
 
     configure: ->
         hideInEditor = atom.config.get('atom-notifier.hideInEditor')
-        unfocused = if hideInEditor isnt 'Show All' then false else atom.config.get('atom-notifier.unfocused')
+        unfocused = if hideInEditor isnt 'Show All' then false \
+                    else atom.config.get('atom-notifier.unfocused')
 
         if unfocused
             window.addEventListener 'blur', => @add()
@@ -38,7 +43,9 @@ module.exports =
         if hideInEditor isnt 'Show All'
             hide = document.createElement('style')
             if hideInEditor is 'Show Errors and Fatal Errors'
-                hide.textContent = "atom-notification.info, atom-notification.warning, atom-notification.success  {display: none;}"
+                hide.textContent = "atom-notification.info, \
+                                    atom-notification.warning, \
+                                    atom-notification.success {display: none;}"
             else
                 hide.textContent = "atom-notification {display: none;}"
             atom.styles.addStyleElement(hide)
@@ -55,8 +62,8 @@ module.exports =
     send: (Notification) ->
         @loadNotifier()
         params = {
-            'title': Notification.message
-            'message': Notification.options.detail ? atom.workspace.getActivePaneItem().getTitle()
+            'title': Notification.getMessage()
+            'message': Notification.getDetail() ? atom.workspace.getActivePaneItem().getTitle()
             'icon': @icon
             'contentImage': path.resolve(__dirname, '..', 'images', 'atom.png')
         }
