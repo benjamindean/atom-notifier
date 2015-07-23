@@ -34,8 +34,8 @@ module.exports =
                     else atom.config.get('atom-notifier.unfocused')
 
         if unfocused
-            window.addEventListener 'blur', @add()
-            window.addEventListener 'focus', @deactivate()
+            window.addEventListener 'blur', => @add()
+            window.addEventListener 'focus', => @deactivate()
         else
             @add()
 
@@ -43,8 +43,8 @@ module.exports =
             styleElement = document.createElement('style')
             if hideInEditor is 'Show Errors and Fatal Errors'
                 styleElement.textContent = "atom-notification.info, \
-                                    atom-notification.warning, \
-                                    atom-notification.success {display: none;}"
+                                            atom-notification.warning, \
+                                            atom-notification.success {display: none;}"
             else
                 styleElement.textContent = "atom-notification {display: none;}"
             atom.styles.addStyleElement(styleElement)
