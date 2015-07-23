@@ -22,10 +22,8 @@ module.exports =
             default: 'Show All'
 
     activate: ->
-        if navigator.appVersion.indexOf("NT 6.1") isnt -1
-            icon = path.resolve(__dirname, '..', 'images', 'atom16.ico')
-        else
-            icon = path.resolve(__dirname, '..', 'images', 'atom.png')
+        file = if navigator.appVersion.indexOf("NT 6.1") isnt -1 then 'atom16.ico' else 'atom.png'
+        icon = path.resolve(__dirname, '..', 'images', file)
         contentImage = path.resolve(__dirname, '..', 'images', 'atom.png')
 
         @configure()
@@ -36,8 +34,8 @@ module.exports =
                     else atom.config.get('atom-notifier.unfocused')
 
         if unfocused
-            window.addEventListener 'blur', => @add()
-            window.addEventListener 'focus', => @deactivate()
+            window.addEventListener 'blur', @add()
+            window.addEventListener 'focus', @deactivate()
         else
             @add()
 
