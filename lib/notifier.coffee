@@ -22,7 +22,7 @@ module.exports =
             default: 'Show All'
 
     activate: ->
-        file = if navigator.appVersion.indexOf("NT 6.1") isnt -1 then 'atom16.ico' else 'atom-info.png'
+        file = if navigator.appVersion.indexOf("NT 6.1") isnt -1 then 'atom16.ico' else 'atom.png'
         icon = path.resolve(__dirname, '..', 'images', file)
         contentImage = path.resolve(__dirname, '..', 'images', 'atom.png')
 
