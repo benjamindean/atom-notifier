@@ -64,7 +64,7 @@ module.exports =
         params =
             'title': title
             'message': message
-            'icon': winIco ? path.resolve(__dirname, '..', 'images', 'atom-#{type}.png')
+            'icon': winIco ? path.resolve(__dirname, '..', 'images', "atom-#{type}.png")
             'contentImage': contentImage
         notifier.notify(params)
 
