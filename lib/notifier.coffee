@@ -1,7 +1,7 @@
 {CompositeDisposable, Disposable} = require 'atom'
 path = require 'path'
 
-[notifier, subscriptions, icon, contentImage] = [null, null, null, null]
+[notifier, subscriptions, winIco, icons, contentImage] = [null, null, null, null, null]
 
 module.exports =
     config:
@@ -22,10 +22,8 @@ module.exports =
             default: 'Show All'
 
     activate: ->
-        file = if navigator.appVersion.indexOf("NT 6.1") isnt -1 then 'atom16.ico' else 'atom.png'
-        icon = path.resolve(__dirname, '..', 'images', file)
+        winIco = if navigator.appVersion.indexOf("NT 6.1") isnt -1 then 'atom16.ico'
         contentImage = path.resolve(__dirname, '..', 'images', 'atom.png')
-
         @configure()
 
     configure: ->
@@ -60,12 +58,13 @@ module.exports =
 
     send: (Notification) ->
         @loadNotifier()
+        type = Notification.getType()
         title = Notification.getMessage()
         message = Notification.getDetail() ? atom.workspace.getActivePaneItem().getTitle()
         params =
             'title': title
             'message': message
-            'icon': icon
+            'icon': winIco ? path.resolve(__dirname, '..', 'images', 'atom-#{type}.png')
             'contentImage': contentImage
         notifier.notify(params)
 
