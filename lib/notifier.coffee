@@ -54,7 +54,8 @@ module.exports =
 
     add: ->
         subscriptions = new CompositeDisposable
-        subscriptions.add atom.notifications.onDidAddNotification (Notification) => @send Notification
+        subscriptions.add atom.notifications.onDidAddNotification (Notification) =>
+            if Notification then @send Notification
 
     send: (Notification) ->
         @loadNotifier()
