@@ -22,7 +22,8 @@ module.exports =
             default: 'Show All'
 
     activate: ->
-        winIco = if navigator.appVersion.indexOf("NT 6.1") isnt -1 then 'atom16.ico'
+        winIco = if navigator.appVersion.indexOf("NT 6.1") isnt -1 then \
+                    path.resolve(__dirname, '..', 'images', 'atom16.ico')
         contentImage = path.resolve(__dirname, '..', 'images', 'atom.png')
         @configure()
 
