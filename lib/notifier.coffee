@@ -62,7 +62,7 @@ module.exports =
         @loadNotifier()
         type = Notification.getType()
         title = Notification.getMessage()
-        message = Notification.getDetail() ? atom.workspace.getActivePaneItem().getTitle()
+        message = Notification.getDetail() ? atom.workspace.getActivePaneItem().getTitle?()
         params =
             'title': title
             'message': message
