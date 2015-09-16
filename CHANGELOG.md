@@ -1,6 +1,11 @@
+
+0.4.3 / 2015-09-16
+==================
+
+
 # Change Log
 
-## [Unreleased](https://github.com/benjamindean/atom-notifier/tree/HEAD)
+## [0.4.3](https://github.com/benjamindean/atom-notifier/tree/HEAD)
 
 [Full Changelog](https://github.com/benjamindean/atom-notifier/compare/v0.4.0...HEAD)
 
