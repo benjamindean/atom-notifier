@@ -1,7 +1,7 @@
 {
   "name": "atom-notifier",
   "main": "./lib/notifier",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "Native desktop notifications for Atom",
   "keywords": [
     "linux",
