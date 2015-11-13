@@ -1,7 +1,7 @@
-{CompositeDisposable, Disposable} = require 'atom'
+{CompositeDisposable} = require 'atom'
 path = require 'path'
 
-[notifier, subscriptions, winIco, icons, contentImage] = [null, null, null, null, null]
+[notifier, subscriptions, icon, icons, contentImage] = [null, null, null, null, null]
 
 module.exports =
     config:
@@ -22,9 +22,12 @@ module.exports =
             default: 'Show All'
 
     activate: ->
-        winIco = if navigator.appVersion.indexOf("NT 6.1") isnt -1 then \
-                    path.resolve(__dirname, '..', 'images', 'atom16.ico')
-        contentImage = path.resolve(__dirname, '..', 'images', 'atom.png')
+        icon = if navigator.appVersion.indexOf("NT 6.1") isnt -1 then \
+                    path.resolve(__dirname, '..', 'images', 'atom16.ico') else \
+                    path.resolve(__dirname, '..', 'images', "atom")
+        contentImage = if navigator.appVersion.indexOf("Mac") is -1 then \
+                    path.resolve(__dirname, '..', 'images', 'atom.png') else \
+                    null
         @configure()
 
     configure: ->
@@ -66,7 +69,7 @@ module.exports =
         params =
             'title': title
             'message': message
-            'icon': winIco ? path.resolve(__dirname, '..', 'images', "atom-#{type}.png")
+            'icon': "#{icon}-#{type}.png"
             'contentImage': contentImage
         notifier.notify(params)
 
