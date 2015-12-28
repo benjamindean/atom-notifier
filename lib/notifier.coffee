@@ -1,7 +1,7 @@
 {CompositeDisposable} = require 'atom'
 path = require 'path'
 
-[notifier, subscriptions, icon, icons, contentImage] = [null, null, null, null, null]
+[notifier, subscriptions, icon, icons, contentImage, unfocused] = [null, null, null, null, null, null]
 
 module.exports =
     config:
@@ -22,18 +22,16 @@ module.exports =
             default: 'Show All'
 
     activate: ->
+        hideInEditor = atom.config.get('atom-notifier.hideInEditor')
+        unfocused = if hideInEditor isnt 'Show All' then false \
+                    else atom.config.get('atom-notifier.unfocused')
+
         icon = if navigator.appVersion.indexOf("NT 6.1") isnt -1 then \
                     path.resolve(__dirname, '..', 'images', 'atom16.ico') else \
                     path.resolve(__dirname, '..', 'images', "atom")
         contentImage = if navigator.appVersion.indexOf("Mac") is -1 then \
                     path.resolve(__dirname, '..', 'images', 'atom.png') else \
                     null
-        @configure()
-
-    configure: ->
-        hideInEditor = atom.config.get('atom-notifier.hideInEditor')
-        @unfocused = if hideInEditor isnt 'Show All' then false \
-                    else atom.config.get('atom-notifier.unfocused')
 
         if hideInEditor isnt 'Show All'
             styleElement = document.createElement('style')
@@ -55,7 +53,7 @@ module.exports =
     add: ->
         subscriptions = new CompositeDisposable
         subscriptions.add atom.notifications.onDidAddNotification (Notification) =>
-            unless @unfocused and not document.body.classList.contains('is-blurred')
+            unless unfocused and not document.body.classList.contains('is-blurred')
                 if Notification then @send Notification
 
 
