@@ -32,14 +32,8 @@ module.exports =
 
     configure: ->
         hideInEditor = atom.config.get('atom-notifier.hideInEditor')
-        unfocused = if hideInEditor isnt 'Show All' then false \
+        @unfocused = if hideInEditor isnt 'Show All' then false \
                     else atom.config.get('atom-notifier.unfocused')
-
-        if unfocused
-            window.addEventListener 'blur', => @add()
-            window.addEventListener 'focus', => @deactivate()
-        else
-            @add()
 
         if hideInEditor isnt 'Show All'
             styleElement = document.createElement('style')
@@ -53,13 +47,17 @@ module.exports =
         else
             if styleElement? then atom.styles.removeStyleElement(styleElement)
 
+        @add()
+
     loadNotifier: ->
         notifier ?= require 'node-notifier'
 
     add: ->
         subscriptions = new CompositeDisposable
         subscriptions.add atom.notifications.onDidAddNotification (Notification) =>
-            if Notification then @send Notification
+            unless @unfocused and not document.body.classList.contains('is-blurred')
+                if Notification then @send Notification
+
 
     send: (Notification) ->
         @loadNotifier()
