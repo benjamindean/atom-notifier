@@ -1,7 +1,7 @@
 {
   "name": "atom-notifier",
   "main": "./lib/notifier",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Native desktop notifications for Atom",
   "keywords": [
     "toast",
