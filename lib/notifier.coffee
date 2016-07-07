@@ -65,7 +65,7 @@ module.exports =
         params =
             'title': title
             'message': message
-            'icon': "#{icon}-#{type}.png"
+            'icon': "#{icon}-#{type.toLowerCase()}.png"
             'contentImage': contentImage
         notifier.notify(params)
 
