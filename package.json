@@ -15,6 +15,6 @@
     "atom": ">=1.0.0 <2.0.0"
   },
   "dependencies": {
-    "node-notifier": "^4.4.0"
+    "node-notifier": "^5.2.0"
   }
 }
