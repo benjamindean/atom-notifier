@@ -67,6 +67,7 @@ module.exports =
             'message': message
             'icon': "#{icon}-#{type.toLowerCase()}.png"
             'contentImage': contentImage
+            'sender': 'com.github.atom'
         notifier.notify(params)
 
     deactivate: ->
