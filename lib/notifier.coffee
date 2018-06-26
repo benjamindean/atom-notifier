@@ -68,6 +68,7 @@ module.exports =
             'icon': "#{icon}-#{type.toLowerCase()}.png"
             'contentImage': contentImage
             'sender': 'com.github.atom'
+            'appID': 'com.squirrel.atom.atom'
         notifier.notify(params)
 
     deactivate: ->
